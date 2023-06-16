@@ -22,22 +22,22 @@ form.addEventListener("submit", async (ev) => {
     let varia = data.weather[0].main;
 		image.src =
 			varia == "Clouds"
-				? "/imgs/cloudy.png"
+				? "imgs/cloudy.png"
 				: varia == "Haze"
-				? "/imgs/haze.png"
+				? "imgs/haze.png"
 				: varia == "Clear"
-				? "/imgs/clear-sky.png"
+				? "imgs/clear-sky.png"
 				: varia == "Rain"
-				? "/imgs/rain.png"
+				? "imgs/rain.png"
 				: varia == "Wind"
-				? "/imgs/windy.png"
+				? "imgs/windy.png"
 				: varia == "Overcast"
-				? "/imgs/overcast.png"
+				? "imgs/overcast.png"
 				: varia == "Sun"
-				? "/imgs/sun.png"
+				? "imgs/sun.png"
 				: varia == "Snow"
-				? "/imgs/snowing.png"
-				: "/imgs/cloudy-sunny.png";
+				? "imgs/snowing.png"
+				: "imgs/cloudy-sunny.png";
         dataBox.innerHTML = `
         <span class="city" id="city">City: <b>${input.value}</b></span>
         <span class="img" id="img">
