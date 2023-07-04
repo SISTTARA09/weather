@@ -16,7 +16,7 @@ form.addEventListener("submit", async (ev) => {
 		let data = await mainData.json();
 		let description = data.weather[0].description;
 		let icon = data.weather[0].icon;
-// WORK WITH SHOW BOX
+		// WORK WITH SHOW BOX
 		dataBox.innerHTML = `
         <span class="city" id="city">City: <b>${input.value}</b></span>
         <span class="img" id="img">
@@ -36,3 +36,40 @@ form.addEventListener("submit", async (ev) => {
 		}, 2000);
 	}
 });
+// WORK WITH LOCATION CITY
+let tbodyTable = document.querySelector("table tbody");
+let citiesArr = ["london", "paris", "madrid"];
+
+window.onload = function () {
+	navigator.geolocation.getCurrentPosition(async (pos) => {
+		let latitude = pos.coords.latitude;
+		let longitude = pos.coords.longitude;
+		let positionUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+		let positionMainData = await fetch(positionUrl);
+		try {
+			let positionData = await positionMainData.json();
+			citiesArr.unshift(positionData.address.city);
+			citiesArr.forEach(async (ele) => {
+				let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${ele}&appid=${apiKey}&units=metric`;
+				let weatherMainData = await fetch(weatherUrl);
+				try {
+					let weatherData = await weatherMainData.json();
+					tbodyTable.innerHTML += `
+					<tr>
+						<td>${ele.toLocaleLowerCase()}</td>
+						<td>${weatherData.main.temp.toFixed(0)}</td>
+						<td>${weatherData.weather[0].description}</td>
+						<td><img src="http://openweathermap.org/img/wn/${
+							weatherData.weather[0].icon
+						}.png" width="50"></td>
+      	</tr>`;
+					tbodyTable.parentElement.style.display = 'flex';
+				} catch (re) {
+					cl(re);
+				}
+			});
+		} catch (re) {
+			cl(re);
+		}
+	});
+};

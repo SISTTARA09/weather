@@ -55,19 +55,20 @@ body {
 	font-weight: 500;
 }
 .show-data .city b {
-  color: var(--main-blue);
+	color: var(--main-blue);
 }
 .show-data .status {
 	font-size: 1.3rem;
 	margin-top: -0.8rem;
 }
 .show-data .time-temp {
-  display: flex;
-  flex-flow: row nowrap;
-  width: 100%;
-  justify-content: space-between;
+	display: flex;
+	flex-flow: row nowrap;
+	width: 100%;
+	justify-content: space-between;
 }
-.show-data .time,.temp {
+.show-data .time,
+.temp {
 	font-size: 1.1rem;
 	font-weight: bold;
 	color: var(--main-blue);
@@ -79,5 +80,58 @@ body {
 	font-size: 1.1rem;
 	width: fit-content;
 	margin: -2rem auto 1rem;
-	padding: .3rem 3rem;
+	padding: 0.3rem 3rem;
+}
+
+/* WORK WITH LOCATION */
+
+table {
+	display: none;
+	background-color: #ddd;
+	flex-flow: column;
+	width: fit-content;
+	border-spacing: 15px;
+	margin: auto;
+}
+@media (width >= 1200px) {
+	table {
+		width: 70vw;
+	}
+}
+@media (width < 1200px) {
+	table {
+		width: 100vw;
+	}
+}
+table thead tr {
+	display: flex;
+}
+table thead td {
+	flex: 1;
+	background-color: #2f5af7;
+	color: white;
+	padding: 0.5rem 1rem;
+}
+table thead tr{
+	gap: .3rem;
+}
+table tbody {
+	display: flex;
+	flex-flow: column;
+	gap: .3rem;
+}
+table tbody tr {
+	display: flex;
+	gap: .3rem;
+}
+table tbody td {
+	line-height: 2.5;
+	flex: 1;
+	color: #2f5af7;
+	text-align: center;
+	height: 50px;
+	padding: 5px;
+}
+td {
+	font-weight: bold;
 }
